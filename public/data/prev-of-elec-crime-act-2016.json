@@ -1,0 +1,630 @@
+[
+  {
+    "id": "WR-001",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "12",
+    "title": "Recruitment, funding and planning of terrorism",
+    "text": "Whoever prepares or disseminates information, through any information system or device, that invites or motivates to fund, or recruits people for terrorism or plans for terrorism shall be punished with imprisonment for a term which may extend to seven years or with fine or with both.",
+    "theme": [
+      "terrorism",
+      "cyber terrorism",
+      "online radicalization",
+      "digital propaganda",
+      "security",
+      "funding",
+      "recruitment",
+      "law enforcement",
+      "internet crimes",
+      "national safety"
+    ],
+    "category": "National Security & Anti-Terrorism",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.95,
+    "translation": "Whoever uses digital means to invite, fund, or recruit people for terrorism shall face imprisonment up to seven years or fine or both.",
+    "theme_tags": [
+      "terrorism",
+      "cybercrime",
+      "security"
+    ]
+  },
+  {
+    "id": "WR-002",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "13",
+    "title": "Electronic forgery",
+    "text": "Whoever interferes with or uses any information system, device or data, with the intent to cause damage, injury, make illegal claim or title, commit fraud by input, alteration, deletion, or suppression of data resulting in unauthentic data intended to be considered as authentic shall be punished with imprisonment up to three years or fine up to two hundred and fifty thousand rupees or both. If committed in relation to critical infrastructure, imprisonment may extend to seven years or fine up to five million rupees or both.",
+    "theme": [
+      "forgery",
+      "fraud",
+      "data manipulation",
+      "digital evidence",
+      "cybercrime",
+      "information systems",
+      "critical infrastructure",
+      "authenticity",
+      "legal misuse",
+      "tampering"
+    ],
+    "category": "Cyber Fraud & Forgery",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.96,
+    "translation": "Electronic forgery involving alteration or falsification of data is punishable with up to three years imprisonment, or seven years if involving critical infrastructure.",
+    "theme_tags": [
+      "forgery",
+      "fraud",
+      "data",
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "WR-003",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "14",
+    "title": "Electronic fraud",
+    "text": "Whoever with intent for wrongful gain interferes with or uses any information system, device or data or deceives any person likely to cause harm shall be punished with imprisonment for a term which may extend to two years or with fine which may extend to ten million rupees or with both.",
+    "theme": [
+      "fraud",
+      "deception",
+      "cybercrime",
+      "wrongful gain",
+      "digital fraud",
+      "data misuse",
+      "electronic systems",
+      "economic crime",
+      "security",
+      "law enforcement"
+    ],
+    "category": "Cyber Fraud & Economic Offences",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.94,
+    "translation": "Anyone using digital means to deceive or gain wrongfully faces imprisonment up to two years or a fine up to ten million rupees or both.",
+    "theme_tags": [
+      "fraud",
+      "deception",
+      "cybercrime"
+    ]
+  },
+  {
+    "id": "WR-004",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "15",
+    "title": "Making, obtaining, or supplying device for use in offence",
+    "text": "Whoever produces, supplies, imports, or adapts any information system, data or device intended to be used to commit or assist in committing an offence under this Act shall be punished with imprisonment up to six months or fine up to fifty thousand rupees or both.",
+    "theme": [
+      "cyber tools",
+      "illegal devices",
+      "offence facilitation",
+      "digital crime",
+      "technology misuse",
+      "cybersecurity",
+      "law enforcement",
+      "equipment regulation"
+    ],
+    "category": "Cybercrime Facilitation",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.93,
+    "translation": "Producing or supplying digital tools to commit crimes is punishable with up to six months imprisonment or fine up to fifty thousand rupees or both.",
+    "theme_tags": [
+      "cybercrime",
+      "tools",
+      "devices"
+    ]
+  },
+  {
+    "id": "WR-005",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "16",
+    "title": "Unauthorized use of identity information",
+    "text": "Whoever obtains, sells, possesses, transmits or uses another person's identity information without authorization shall be punished with imprisonment for a term which may extend to three years or with fine which may extend to five million rupees or with both. Victims may apply to the Authority for securing, destroying, or blocking access to such identity information.",
+    "theme": [
+      "identity theft",
+      "privacy",
+      "personal data",
+      "digital safety",
+      "information security",
+      "cybercrime",
+      "protection",
+      "law enforcement",
+      "data breach",
+      "rights"
+    ],
+    "category": "Identity Protection & Privacy",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.99,
+    "translation": "Using another person’s digital identity without consent is punishable by up to three years in prison or a fine up to five million rupees or both.",
+    "theme_tags": [
+      "identity",
+      "privacy",
+      "cybercrime"
+    ]
+  },
+  {
+    "id": "WR-006",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "17",
+    "title": "Unauthorized issuance of SIM cards etc.",
+    "text": "Whoever sells or provides SIM, RIUM, UICC or similar modules for network authentication without proper verification of subscriber's antecedents shall be punished with imprisonment up to three years or fine up to five hundred thousand rupees or both.",
+    "theme": [
+      "SIM",
+      "verification",
+      "telecommunication",
+      "security",
+      "fraud prevention",
+      "identity",
+      "digital communication",
+      "network",
+      "compliance",
+      "law enforcement"
+    ],
+    "category": "Telecommunication & Identity Regulation",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.92,
+    "translation": "Issuing SIM cards without proper verification is punishable with up to three years imprisonment or fine up to five hundred thousand rupees or both.",
+    "theme_tags": [
+      "SIM",
+      "verification",
+      "identity"
+    ]
+  },
+  {
+    "id": "WR-007",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "18",
+    "title": "Tampering, etc. of communication equipment",
+    "text": "Whoever unlawfully alters, tampers, or reprograms unique device identifiers of communication equipment like mobile or wireless devices for transmitting or receiving information shall be punished with imprisonment up to three years or fine up to one million rupees or both.",
+    "theme": [
+      "tampering",
+      "device ID",
+      "communication",
+      "hardware security",
+      "telecommunication",
+      "fraud",
+      "illegal modification",
+      "cybercrime",
+      "digital device",
+      "data integrity"
+    ],
+    "category": "Device & Communication Integrity",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.93,
+    "translation": "Tampering with mobile or communication device identifiers is punishable with imprisonment up to three years or fine up to one million rupees or both.",
+    "theme_tags": [
+      "tampering",
+      "device",
+      "communication"
+    ]
+  },
+  {
+    "id": "WR-008",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "19",
+    "title": "Unauthorized interception",
+    "text": "Whoever dishonestly intercepts by technical means any non-public transmission or electromagnetic emission from an information system carrying data shall be punished with imprisonment up to two years or fine up to five hundred thousand rupees or both.",
+    "theme": [
+      "interception",
+      "privacy",
+      "data transmission",
+      "cybercrime",
+      "communication security",
+      "wiretapping",
+      "information systems",
+      "data protection",
+      "surveillance"
+    ],
+    "category": "Privacy & Communication Security",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 8",
+    "relevance_score": 0.96,
+    "translation": "Unauthorized interception of private digital communications is punishable with up to two years imprisonment or a fine up to five hundred thousand rupees or both.",
+    "theme_tags": [
+      "interception",
+      "privacy",
+      "cybercrime"
+    ]
+  },
+  {
+    "id": "WR-009",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "21",
+    "title": "Offences against dignity of a natural person",
+    "text": "Whoever intentionally and publicly exhibits or displays or transmits any information that harms the reputation or privacy of a natural person shall be punished with imprisonment for a term which may extend to three years or with fine which may extend to one million rupees or with both.",
+    "theme": [
+      "dignity",
+      "privacy",
+      "harassment",
+      "reputation",
+      "electronic communication",
+      "cyber abuse",
+      "defamation",
+      "digital safety",
+      "women protection",
+      "online conduct"
+    ],
+    "category": "Dignity & Privacy Rights",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, pages 7-8",
+    "relevance_score": 0.97,
+    "translation": "Whoever intentionally and publicly exhibits or displays or transmits any information that harms the reputation or privacy of a natural person shall be punished with imprisonment for a term which may extend to three years or with fine which may extend to one million rupees or with both.",
+    "theme_tags": [
+      "privacy",
+      "dignity",
+      "cybercrime",
+      "women",
+      "rights"
+    ]
+  },
+  {
+    "id": "WR-010",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "22",
+    "title": "Child Pornography",
+    "text": "Whoever intentionally produces, offers or makes available, distributes or transmits through an information system or procures for himself or for another person or without lawful justification possesses material in an information system, that visually depicts (a) a minor engaged in sexually explicit conduct; (b) a person appearing to be a minor engaged in sexually explicit conduct; (c) realistic images representing a minor engaged in sexually explicit conduct; or (d) discloses the identity of the minor, shall be punished with imprisonment for a term which may extend to seven years, or with fine which may extend to five million rupees or with both. (2) Any aggrieved person or his guardian, where such person is a minor, may apply to the Authority for removal, destruction of or blocking access to such information referred to in subsection (1) and the Authority, on receipt of such application, shall forthwith pass such orders as deemed reasonable in the circumstances, including an order for removal, destruction, preventing transmission of or blocking access to such information and the Authority may also direct any of its licensees to secure such information including traffic data.",
+    "theme": [
+      "child protection",
+      "pornography",
+      "sexual exploitation",
+      "minors",
+      "digital safety",
+      "women protection",
+      "consent",
+      "privacy",
+      "cybercrime",
+      "law enforcement"
+    ],
+    "category": "Child & Women Protection",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, pages 9-10",
+    "relevance_score": 0.98,
+    "translation": "Child pornography involving depiction or abuse of minors is punishable with up to seven years of imprisonment or a fine up to five million rupees.",
+    "theme_tags": [
+      "child",
+      "pornography",
+      "cybercrime",
+      "women",
+      "protection"
+    ]
+  },
+  {
+    "id": "WR-011",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "23",
+    "title": "Child pornography",
+    "text": "Whoever intentionally produces, transmits, distributes, offers, sells, purchases, or possesses any data or content that depicts a minor engaged in sexually explicit conduct through an information system shall be punished with imprisonment for a term which may extend to seven years or with fine which may extend to five million rupees or with both.",
+    "theme": [
+      "child pornography",
+      "sexual exploitation",
+      "minor protection",
+      "online abuse",
+      "digital safety",
+      "criminal law",
+      "data misuse",
+      "electronic media",
+      "internet crime"
+    ],
+    "category": "Child Protection & Exploitation",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, pages 8-9",
+    "relevance_score": 1.0,
+    "translation": "Whoever intentionally produces, transmits, distributes, offers, sells, purchases, or possesses any data or content that depicts a minor engaged in sexually explicit conduct through an information system shall be punished with imprisonment for a term which may extend to seven years or with fine which may extend to five million rupees or with both.",
+    "theme_tags": [
+      "child",
+      "pornography",
+      "cybercrime",
+      "minor",
+      "protection"
+    ]
+  },
+  {
+    "id": "WR-012",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "24",
+    "title": "Cyber Stalking",
+    "text": "(1) A person commits the offence of cyber stalking who, with the intent to coerce or intimidate or harass any person, uses information system, information system network, the Internet, website, electronic mail or any other similar means of communication to— (a) follow a person or contacts or attempts to contact such person to foster personal interaction repeatedly despite a clear indication of disinterest by such person; (b) monitor the use by a person of the internet, electronic mail, text message or any other form of electronic communication; (c) watch or spy upon a person in a manner that results in fear of violence or serious alarm or distress, in the mind of such person; or (d) take a photograph or make a video of any person and displays or distributes it without his consent in a manner that harms a person. (2) Whoever commits the offence specified in subsection (1) shall be punished with imprisonment for a term which may extend to three years or with fine which may extend to one million rupees or with both: Provided that if victim of the cyber stalking under subsection (1) is a minor the punishment may extend to five years or with fine which may extend to ten million rupees or with both. (3) Any aggrieved person or his guardian, where such person is a minor, may apply to the Authority for removal, destruction of or blocking access to such information referred to in subsection (1) and the Authority, on receipt of such application, shall forthwith pass such orders as deemed reasonable in the circumstances including an order for removal, destruction, preventing transmission of or blocking access to such information and the Authority may also direct any of its licensees to secure such information including traffic data.",
+    "theme": [
+      "harassment",
+      "stalking",
+      "privacy",
+      "cybercrime",
+      "women safety",
+      "minor protection",
+      "digital abuse",
+      "threats",
+      "personal safety",
+      "law enforcement"
+    ],
+    "category": "Women & Minor Protection",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, pages 10-11",
+    "relevance_score": 0.99,
+    "translation": "Cyber stalking involving harassment, intimidation, or non-consensual monitoring or sharing of a person’s private information or media is punishable with imprisonment up to three years or fine, increasing to five years and higher fines when the victim is a minor.",
+    "theme_tags": [
+      "cyberstalking",
+      "women",
+      "harassment",
+      "privacy",
+      "digital_safety"
+    ]
+  },
+  {
+    "id": "WR-013",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "25",
+    "title": "Spamming",
+    "text": "(1) A person commits the offence of spamming, who with intent transmits harmful, fraudulent, misleading, illegal or unsolicited information to any person without permission of the recipient or who causes any information system to show any such information for wrongful gain. (2) A person including an institution or an organization engaged in direct marketing shall provide the option to the recipient of direct marketing to unsubscribe from such marketing. (3) Whoever commits the offence of spamming as described in subsection (1) by transmitting harmful, fraudulent, misleading or illegal information, shall be punished with imprisonment for a term which may extend to three months or with fine of rupees fifty thousand which may extend up to rupees five million or with both. (4) Whoever commits the offence of spamming as described in subsection (1) by transmitting unsolicited information, or engages in direct marketing in violation of subsection (2), for the first time, shall be punished with fine not exceeding fifty thousand rupees, and for every subsequent violation shall be punished with fine not less than fifty thousand rupees that may extend up to one million rupees.",
+    "theme": [
+      "spamming",
+      "digital safety",
+      "privacy",
+      "consent",
+      "communication",
+      "information misuse",
+      "online marketing",
+      "consumer rights",
+      "cybercrime",
+      "data protection"
+    ],
+    "category": "Digital Privacy & Protection",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, pages 11-12",
+    "relevance_score": 0.85,
+    "translation": "Sending harmful, fraudulent, or unsolicited electronic messages without the recipient’s consent is an offence, punishable with imprisonment up to three months or fine up to five million rupees.",
+    "theme_tags": [
+      "spamming",
+      "privacy",
+      "communication",
+      "consent",
+      "cybercrime"
+    ]
+  },
+  {
+    "id": "WR-014",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "26",
+    "title": "Spoofing",
+    "text": "(1) Whoever with dishonest intention establishes a website or sends any information with a counterfeit source intended to be believed by the recipient or visitor of the website, to be an authentic source commits spoofing. (2) Whoever commits spoofing shall be punished with imprisonment for a term which may extend to three years or with fine which may extend to five hundred thousand rupees or with both.",
+    "theme": [
+      "spoofing",
+      "fraud",
+      "impersonation",
+      "cyber deception",
+      "online identity",
+      "digital trust",
+      "information security",
+      "misrepresentation"
+    ],
+    "category": "Cyber Fraud & Deception",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 12",
+    "relevance_score": 0.88,
+    "translation": "Creating or using counterfeit websites or information sources to deceive others is punishable with imprisonment up to three years or a fine up to five hundred thousand rupees.",
+    "theme_tags": [
+      "spoofing",
+      "fraud",
+      "identity",
+      "cybercrime",
+      "trust"
+    ]
+  },
+  {
+    "id": "WR-015",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "27",
+    "title": "Legal Recognition of Offences Committed in Relation to Information Systems",
+    "text": "(1) Notwithstanding anything contained in any other law for the time being in force, an offence under this Act or any other law shall not be denied legal recognition and enforcement for the sole reason of such offence being committed in relation to or through the use of an information system. (2) References to 'property' in any law creating an offence in relation to or concerning property, shall include information system and data.",
+    "theme": [
+      "legal recognition",
+      "information system",
+      "digital law",
+      "property rights",
+      "cybercrime",
+      "legislation",
+      "data protection",
+      "law enforcement"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 12",
+    "relevance_score": 0.75,
+    "translation": "Offences committed through information systems are legally recognized and enforceable under Pakistani law.",
+    "theme_tags": [
+      "cyberlaw",
+      "data",
+      "property",
+      "recognition",
+      "digital"
+    ]
+  },
+  {
+    "id": "WR-016",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "28",
+    "title": "Application of Pakistan Penal Code, 1860",
+    "text": "The provisions of the Pakistan Penal Code, 1860 (Act XLV of 1860), to the extent not inconsistent with anything provided in this Act, shall apply to the offences provided in this Act.",
+    "theme": [
+      "pakistan penal code",
+      "legal framework",
+      "integration",
+      "law enforcement",
+      "cyber offences"
+    ],
+    "category": "Legal Framework",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf, page 12",
+    "relevance_score": 0.6,
+    "translation": "The Pakistan Penal Code applies to offences under this Act unless inconsistent with its provisions.",
+    "theme_tags": [
+      "ppc",
+      "law",
+      "integration",
+      "cybercrime",
+      "framework"
+    ]
+  },
+  {
+    "id": "WR-017",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "29",
+    "title": "Establishment of Investigation Agency",
+    "text": "(1) The Federal Government may establish or designate a law enforcement agency as the investigation agency for the purposes of investigation of offences under this Act. (2) The investigation agency and authorized officers shall follow procedures laid down in the Code, provided they are not inconsistent with this Act. (3) The agency shall develop its own forensic analysis capabilities, and its reports shall be admissible in court. (4) The Federal Government shall make rules for appointment, promotion, and training in digital forensics, IT, and related fields for officers of the agency.",
+    "theme": [
+      "investigation",
+      "law enforcement",
+      "forensics",
+      "cybercrime",
+      "agency",
+      "training",
+      "digital evidence"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf",
+    "relevance_score": 0.9,
+    "translation": "",
+    "theme_tags": [
+      "investigation",
+      "forensics",
+      "law_enforcement"
+    ]
+  },
+  {
+    "id": "WR-018",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "30",
+    "title": "Power to Investigate",
+    "text": "Only an authorized officer of the investigation agency shall have powers to investigate offences under this Act. The Federal or Provincial Government may constitute joint investigation teams with officers from multiple law enforcement agencies for investigation of offences under this Act.",
+    "theme": [
+      "investigation",
+      "law enforcement",
+      "joint teams",
+      "cybercrime",
+      "authorized officers"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf",
+    "relevance_score": 0.9,
+    "translation": "",
+    "theme_tags": [
+      "investigation",
+      "law_enforcement"
+    ]
+  },
+  {
+    "id": "WR-019",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "31",
+    "title": "Expedited Preservation and Acquisition of Data",
+    "text": "If an authorized officer believes specific data is required for a criminal investigation and may be lost or altered, they may issue a written notice requiring the data to be preserved for up to 90 days. The officer must inform the Court within 24 hours, and the Court may extend or modify the order as appropriate.",
+    "theme": [
+      "data preservation",
+      "investigation",
+      "court order",
+      "cybercrime",
+      "evidence"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf",
+    "relevance_score": 0.9,
+    "translation": "",
+    "theme_tags": [
+      "data",
+      "preservation",
+      "investigation"
+    ]
+  },
+  {
+    "id": "WR-020",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "32",
+    "title": "Retention of Traffic Data",
+    "text": "(1) A service provider must retain specified traffic data for at least one year or as notified by the Authority and provide it to the investigation agency upon warrant. (2) Retention must comply with the Electronic Transactions Ordinance, 2002. (3) Violation by a non-licensee is punishable by fines up to ten million rupees and imprisonment up to six months for repeat offences. Licensees are subject to the terms of their licenses.",
+    "theme": [
+      "traffic data",
+      "retention",
+      "service providers",
+      "warrant",
+      "compliance"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf",
+    "relevance_score": 0.9,
+    "translation": "",
+    "theme_tags": [
+      "data",
+      "retention",
+      "providers"
+    ]
+  },
+  {
+    "id": "WR-021",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "33",
+    "title": "Warrant for Search or Seizure",
+    "text": "(1) Upon reasonable grounds, the Court may issue a warrant authorizing entry, search, and seizure of information systems or data required for criminal investigation. (2) In urgent cases involving offences under section 10, a Gazetted officer may act without a warrant but must inform the Court within 24 hours for approval.",
+    "theme": [
+      "warrant",
+      "search",
+      "seizure",
+      "court",
+      "investigation"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf",
+    "relevance_score": 0.9,
+    "translation": "",
+    "theme_tags": [
+      "warrant",
+      "search",
+      "seizure"
+    ]
+  },
+  {
+    "id": "WR-022",
+    "law_name": "The Prevention of Electronic Crimes Act, 2016",
+    "section": "34",
+    "title": "Warrant for Disclosure of Content Data",
+    "text": "If the Court is satisfied that content data stored in an information system is needed for a criminal investigation, it may order the person controlling the data to provide access or disclosure. Warrants are valid for seven days and may be extended by the Court.",
+    "theme": [
+      "warrant",
+      "content data",
+      "disclosure",
+      "court",
+      "investigation"
+    ],
+    "category": "Cyber Law & Enforcement",
+    "source_type": "Pakistani Laws",
+    "source_name": "The Prevention of Electronic Crimes Act, 2016",
+    "reference": "Prevention-of-Electronic-Crimes-Act-2016.pdf",
+    "relevance_score": 0.9,
+    "translation": "",

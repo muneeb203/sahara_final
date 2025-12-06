@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Saharah Design System - Professional, Safe, Empowering */
+    --background: 280 20% 98%;
+    --foreground: 0 0% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+
+    /* Deep plum - empowering brand color */
+    --primary: 280 45% 25%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Soft lavender for secondary surfaces */
+    --secondary: 280 40% 75%;
+    --secondary-foreground: 280 45% 25%;
+
+    /* Muted lavender backgrounds */
+    --muted: 280 30% 94%;
+    --muted-foreground: 280 10% 45%;
+
+    /* Accent purple for interactive elements */
+    --accent: 280 50% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Emergency red - only for critical actions */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 280 20% 88%;
+    --input: 280 20% 95%;
+    --ring: 280 45% 25%;
+
+    --radius: 1rem;
+    
+    /* Custom semantic tokens */
+    --safe-green: 140 60% 45%;
+    --warning-amber: 35 95% 55%;
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px rgba(74, 35, 90, 0.08);
+    --shadow-medium: 0 4px 16px rgba(74, 35, 90, 0.12);
+    --shadow-lifted: 0 8px 24px rgba(74, 35, 90, 0.16);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 280 30% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 280 25% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 280 25% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 280 50% 65%;
+    --primary-foreground: 280 45% 15%;
+
+    --secondary: 280 30% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 280 25% 15%;
+    --muted-foreground: 280 10% 65%;
+
+    --accent: 280 50% 55%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 280 25% 20%;
+    --input: 280 25% 15%;
+    --ring: 280 50% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
