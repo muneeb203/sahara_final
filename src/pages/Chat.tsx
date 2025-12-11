@@ -3,8 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Send, Mic, Upload, Trash2, Download, Bot, User } from 'lucide-react';
+import { Send, Mic, Upload, Trash2, Download, Bot, User, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { sendChatMessage, checkApiHealth, type ChatMessage as ApiChatMessage } from '@/lib/api';
+import '@/lib/debug'; // Import debug utilities
 
 type Message = {
   id: string;
@@ -28,17 +30,49 @@ export default function Chat() {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isApiHealthy, setIsApiHealthy] = useState<boolean | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll if user is near the bottom or if it's a new message
+    const messagesContainer = messagesEndRef.current?.parentElement;
+    if (messagesContainer) {
+      const { scrollTop, scrollHeight, clientHeight } = messagesContainer;
+      const isNearBottom = scrollTop + clientHeight >= scrollHeight - 100;
+      
+      if (isNearBottom) {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Small delay to ensure DOM is updated
+    const timer = setTimeout(scrollToBottom, 100);
+    return () => clearTimeout(timer);
   }, [messages]);
 
-  const handleSend = () => {
+  // Check API health on component mount
+  useEffect(() => {
+    const checkHealth = async () => {
+      console.log('🔍 Checking API health...');
+      const healthy = await checkApiHealth();
+      console.log('🏥 API Health result:', healthy);
+      setIsApiHealthy(healthy);
+      if (!healthy) {
+        console.error('❌ API health check failed');
+        toast.error(t(
+          'Unable to connect to AI assistant. Please check your connection.',
+          'AI معاون سے رابطہ نہیں ہو سکا۔ براہ کرم اپنا کنکشن چیک کریں۔'
+        ));
+      } else {
+        console.log('✅ API is healthy');
+      }
+    };
+    checkHealth();
+  }, [t]);
+
+  const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMessage: Message = {
@@ -49,23 +83,51 @@ export default function Chat() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      // Convert messages to API format for conversation history
+      const conversationHistory: ApiChatMessage[] = messages.map(msg => ({
+        role: msg.role,
+        content: msg.content
+      }));
+
+      // Send message to AI via ngrok tunnel
+      const aiResponse = await sendChatMessage(currentInput, conversationHistory);
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
+        content: aiResponse,
+        timestamp: new Date(),
+      };
+
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      
+      // Fallback message in case of API failure
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
         content: t(
-          'I understand your question. In Pakistan, women have specific legal rights under various laws. Could you tell me more about your specific situation so I can provide more accurate guidance?',
-          'میں آپ کا سوال سمجھ گئی ہوں۔ پاکستان میں، خواتین کے مختلف قوانین کے تحت مخصوص قانونی حقوق ہیں۔ کیا آپ مجھے اپنی مخصوص صورتحال کے بارے میں مزید بتا سکتے ہیں تاکہ میں زیادہ درست رہنمائی فراہم کر سکوں؟'
+          'I apologize, but I\'m having trouble connecting to the server right now. Please try again in a moment. If the problem persists, please check your internet connection.',
+          'معذرت، لیکن مجھے فی الوقت سرور سے رابطہ کرنے میں مسئلہ ہو رہا ہے۔ براہ کرم ایک لمحے میں دوبارہ کوشش کریں۔ اگر مسئلہ برقرار رہے تو براہ کرم اپنا انٹرنیٹ کنکشن چیک کریں۔'
         ),
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, aiMessage]);
+
+      setMessages((prev) => [...prev, errorMessage]);
+      
+      toast.error(t(
+        'Failed to get response from AI assistant',
+        'AI معاون سے جواب حاصل کرنے میں ناکام'
+      ));
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleClearChat = () => {
@@ -95,9 +157,21 @@ export default function Chat() {
     toast.info(t('File upload feature coming soon', 'فائل اپ لوڈ فیچر جلد آ رہا ہے'));
   };
 
+  const handleRetryConnection = async () => {
+    setIsApiHealthy(null); // Set to loading state
+    const healthy = await checkApiHealth();
+    setIsApiHealthy(healthy);
+    
+    if (healthy) {
+      toast.success(t('Connected to AI assistant', 'AI معاون سے رابطہ ہو گیا'));
+    } else {
+      toast.error(t('Still unable to connect', 'اب بھی رابطہ نہیں ہو سکا'));
+    }
+  };
+
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col">
-      <div className="container mx-auto px-4 py-6 flex-1 flex flex-col max-w-4xl">
+    <div className="flex flex-col">
+      <div className="container mx-auto px-4 py-6 flex flex-col max-w-4xl chat-container">
         {/* Header */}
         <Card className="mb-4">
           <CardHeader className="pb-3">
@@ -105,8 +179,32 @@ export default function Chat() {
               <CardTitle className="flex items-center gap-2">
                 <Bot className="h-6 w-6 text-primary" />
                 {t('AI Legal Assistant', 'AI قانونی معاون')}
+                {/* Connection Status Indicator */}
+                <div className="flex items-center gap-1 ml-2">
+                  {isApiHealthy === null ? (
+                    <div className="h-2 w-2 bg-yellow-500 rounded-full animate-pulse" />
+                  ) : isApiHealthy ? (
+                    <div className="h-2 w-2 bg-green-500 rounded-full" />
+                  ) : (
+                    <AlertCircle className="h-4 w-4 text-red-500" />
+                  )}
+                  <span className="text-xs text-muted-foreground">
+                    {isApiHealthy === null 
+                      ? t('Connecting...', 'رابطہ کر رہے ہیں...')
+                      : isApiHealthy 
+                        ? t('Online', 'آن لائن')
+                        : t('Offline', 'آف لائن')
+                    }
+                  </span>
+                </div>
               </CardTitle>
               <div className="flex gap-2">
+                {isApiHealthy === false && (
+                  <Button variant="outline" size="sm" onClick={handleRetryConnection}>
+                    <AlertCircle className="h-4 w-4 mr-2" />
+                    {t('Retry', 'دوبارہ کوشش')}
+                  </Button>
+                )}
                 <Button variant="outline" size="sm" onClick={handleDownload}>
                   <Download className="h-4 w-4 mr-2" />
                   {t('Download', 'ڈاؤن لوڈ')}
@@ -121,8 +219,8 @@ export default function Chat() {
         </Card>
 
         {/* Messages */}
-        <Card className="flex-1 flex flex-col overflow-hidden">
-          <CardContent className="flex-1 overflow-y-auto p-6 space-y-4">
+        <Card className="flex-1 flex flex-col overflow-hidden min-h-0">
+          <CardContent className="flex-1 overflow-y-auto p-6 space-y-4 chat-messages">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -167,11 +265,11 @@ export default function Chat() {
                 </div>
               </div>
             )}
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} className="h-8" />
           </CardContent>
 
           {/* Input */}
-          <CardContent className="border-t pt-4">
+          <CardContent className="border-t pt-4 pb-4 flex-shrink-0 bg-background/95 backdrop-blur-sm">
             <div className="flex gap-2">
               <Button variant="outline" size="icon" onClick={handleVoiceInput}>
                 <Mic className="h-5 w-5" />
@@ -186,7 +284,10 @@ export default function Chat() {
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 className="flex-1"
               />
-              <Button onClick={handleSend} disabled={!input.trim()}>
+              <Button 
+                onClick={handleSend} 
+                disabled={!input.trim() || isTyping || isApiHealthy === false}
+              >
                 <Send className="h-5 w-5" />
               </Button>
             </div>

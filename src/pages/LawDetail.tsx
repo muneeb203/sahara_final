@@ -80,9 +80,10 @@ export default function LawDetail() {
                 {law.title}
               </h1>
               <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full">{law.mainCategory}</span>
                 <span className="bg-muted px-3 py-1 rounded-full">{law.category}</span>
                 <span className="bg-muted px-3 py-1 rounded-full">
-                  {law.sections.length} {t('Sections', 'سیکشن')}
+                  {law.sections.length} {law.mainCategory === 'Islamic Laws' ? t('Ahadith', 'احادیث') : t('Sections', 'سیکشن')}
                 </span>
               </div>
             </div>
@@ -111,7 +112,10 @@ export default function LawDetail() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              {t('Sections & Content', 'سیکشن اور مواد')}
+              {law.mainCategory === 'Islamic Laws' 
+                ? t('Ahadith & Content', 'احادیث اور مواد')
+                : t('Sections & Content', 'سیکشن اور مواد')
+              }
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {law.description}
@@ -124,10 +128,10 @@ export default function LawDetail() {
                   <AccordionTrigger className="text-left">
                     <div className="flex flex-col items-start gap-1">
                       <span className="font-semibold">
-                        {section.reference}
+                        {section.reference || `${law.mainCategory === 'Islamic Laws' ? 'Hadith' : 'Section'} ${index + 1}`}
                       </span>
                       <span className="text-xs text-muted-foreground">
-                        {section.category}
+                        {section.category} • {section.source_type}
                       </span>
                     </div>
                   </AccordionTrigger>
@@ -136,6 +140,31 @@ export default function LawDetail() {
                       <p className="text-foreground leading-relaxed whitespace-pre-wrap">
                         {section.text}
                       </p>
+                      
+                      {/* Show translation for Islamic laws */}
+                      {law.mainCategory === 'Islamic Laws' && section.translation && section.translation !== section.text && (
+                        <div className="border-l-4 border-primary/20 pl-4 bg-muted/30 p-3 rounded-r">
+                          <p className="text-sm font-medium text-muted-foreground mb-1">
+                            {t('Translation', 'ترجمہ')}:
+                          </p>
+                          <p className="text-foreground leading-relaxed whitespace-pre-wrap">
+                            {section.translation}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Show additional Islamic fields */}
+                      {law.mainCategory === 'Islamic Laws' && (
+                        <div className="text-xs text-muted-foreground space-y-1">
+                          {section.semantic_score && (
+                            <div>Semantic Score: {section.semantic_score.toFixed(3)}</div>
+                          )}
+                          {section.matched_theme && (
+                            <div>Matched Theme: {section.matched_theme}</div>
+                          )}
+                        </div>
+                      )}
+
                       <div className="flex flex-wrap gap-1">
                         {section.theme_tags.map((tag, tagIndex) => (
                           <span

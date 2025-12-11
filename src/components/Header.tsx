@@ -49,12 +49,13 @@ export const Header = () => {
           <div className="flex items-center space-x-2">
             <Button
               variant="ghost"
-              size="icon"
               onClick={toggleLanguage}
-              className="rounded-full"
+              className="rounded-full px-3 py-2 h-auto"
               title={t('Switch to Urdu', 'انگریزی میں تبدیل کریں')}
             >
-              <Languages className="h-5 w-5" />
+              <span className="text-sm font-medium">
+                {language === 'en' ? 'اردو' : 'English'}
+              </span>
               <span className="sr-only">{t('Toggle Language', 'زبان تبدیل کریں')}</span>
             </Button>
 
