@@ -13,6 +13,8 @@ import LawDetail from "./pages/LawDetail";
 import Chat from "./pages/Chat";
 import Lawyers from "./pages/Lawyers";
 import LawyerDetail from "./pages/LawyerDetail";
+import LawyerPortal from "./pages/LawyerPortal";
+import AdminPanel from "./pages/AdminPanel";
 import Uploads from "./pages/Uploads";
 import EmergencyContacts from "./pages/EmergencyContacts";
 import Login from "./pages/Login";
@@ -40,6 +42,8 @@ const App = () => (
                   <Route path="/chat" element={<Chat />} />
                   <Route path="/lawyers" element={<Lawyers />} />
                   <Route path="/lawyers/:id" element={<LawyerDetail />} />
+                  <Route path="/lawyer-portal" element={<LawyerPortal />} />
+                  <Route path="/admin" element={<AdminPanel />} />
                   <Route path="/uploads" element={<Uploads />} />
                   <Route path="/emergency-contacts" element={<EmergencyContacts />} />
                   <Route path="/login" element={<Login />} />

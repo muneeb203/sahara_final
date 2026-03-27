@@ -51,7 +51,8 @@ export async function testNgrokConnection() {
       method: 'POST',
       headers: API_CONFIG.REQUEST_CONFIG.headers,
       body: JSON.stringify({
-        message: 'What are my inheritance rights?'
+        message: 'What are my inheritance rights?',
+        session_id: 'u1',
       }),
     });
     console.log('✅ Chat endpoint response:', response.status, response.statusText);

@@ -286,7 +286,7 @@ export default function Chat() {
               />
               <Button 
                 onClick={handleSend} 
-                disabled={!input.trim() || isTyping || isApiHealthy === false}
+                disabled={!input.trim() || isTyping}
               >
                 <Send className="h-5 w-5" />
               </Button>

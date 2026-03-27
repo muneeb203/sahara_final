@@ -14,6 +14,7 @@ export const Header = () => {
     { to: '/', label: t('Home', 'ہوم') },
     { to: '/laws', label: t('Laws', 'قوانین') },
     { to: '/lawyers', label: t('Lawyers', 'وکیل') },
+    { to: '/lawyer-portal', label: t('Lawyer Portal', 'لاویر پورٹل') },
     { to: '/chat', label: t('Chat', 'چیٹ') },
     { to: '/uploads', label: t('Uploads', 'اپ لوڈز') },
     { to: '/emergency-contacts', label: t('Emergency Contacts', 'ایمرجنسی رابطے') },

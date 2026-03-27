@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MessageSquare, Scale, Users, Shield, FileText, Phone } from 'lucide-react';
+import { MessageSquare, Scale, Users, Shield } from 'lucide-react';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -71,6 +71,12 @@ export default function Home() {
                 <Link to="/laws">
                   <Scale className="mr-2 h-5 w-5" />
                   {t('Explore Laws', 'قوانین دریافت کریں')}
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 border-primary-foreground/20 text-primary-foreground text-lg">
+                <Link to="/lawyers">
+                  <Users className="mr-2 h-5 w-5" />
+                  {t('Consult a Lawyer', 'وکیل سے مشورہ کریں')}
                 </Link>
               </Button>
             </div>

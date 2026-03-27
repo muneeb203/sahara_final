@@ -1,7 +1,7 @@
 // API Configuration
 export const API_CONFIG = {
-  // ngrok tunnel URL - update this when ngrok URL changes
-  NGROK_BASE_URL: 'https://fb410d356bb4.ngrok-free.app',
+  // Backend base URL
+  NGROK_BASE_URL: 'https://b885-119-154-57-138.ngrok-free.app',
   
   // API endpoints
   ENDPOINTS: {
@@ -14,7 +14,7 @@ export const API_CONFIG = {
     timeout: 30000, // 30 seconds
     headers: {
       'Content-Type': 'application/json',
-      'ngrok-skip-browser-warning': 'true',
+      Accept: 'application/json',
     },
   },
 } as const;
