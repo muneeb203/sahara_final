@@ -271,9 +271,9 @@ export default function Chat() {
             <div ref={messagesEndRef} className="h-8" />
           </CardContent>
 
-          {/* Input */}
+          {/* Input — always accessible, no login required */}
           <CardContent className="border-t pt-4 pb-4 flex-shrink-0 bg-background/95 backdrop-blur-sm">
-            {isLoggedIn ? (
+            {true ? (
               <>
                 <div className="flex gap-2">
                   <Button variant="outline" size="icon" onClick={handleVoiceInput}>
