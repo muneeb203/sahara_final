@@ -1,33 +1,52 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LawyerCard } from "@/components/lawyers/LawyerCard";
 import { RequestHelpDialog } from "@/components/lawyers/RequestHelpDialog";
+import { ChatWindow } from "@/components/lawyers/ChatWindow";
 import { useApprovedLawyers } from "@/hooks/use-lawyer-directory";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import type { LawyerProfile } from "@/types/lawyers";
 
 export default function Lawyers() {
+  const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [selectedLawyer, setSelectedLawyer] = useState<LawyerProfile | null>(null);
   const [requestOpen, setRequestOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatLawyer, setChatLawyer] = useState<LawyerProfile | null>(null);
+
   const { data: lawyers = [], isLoading, error } = useApprovedLawyers();
 
   const filteredLawyers = useMemo(() => {
     const term = search.toLowerCase().trim();
     if (!term) return lawyers;
     return lawyers.filter(
-      (lawyer) =>
-        lawyer.full_name.toLowerCase().includes(term) ||
-        lawyer.specialization.toLowerCase().includes(term) ||
-        lawyer.city.toLowerCase().includes(term)
+      (l) =>
+        l.full_name.toLowerCase().includes(term) ||
+        l.specialization.toLowerCase().includes(term) ||
+        l.city.toLowerCase().includes(term)
     );
   }, [lawyers, search]);
 
   const openRequest = (lawyer: LawyerProfile) => {
     setSelectedLawyer(lawyer);
     setRequestOpen(true);
+  };
+
+  const openChat = (lawyer: LawyerProfile) => {
+    if (!isLoggedIn || !user) {
+      toast.error("Please log in to message a lawyer.", {
+        action: { label: "Login", onClick: () => navigate("/login") },
+      });
+      return;
+    }
+    setChatLawyer(lawyer);
+    setChatOpen(true);
   };
 
   return (
@@ -50,29 +69,34 @@ export default function Lawyers() {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
-              onChange={(event) => setSearch(event.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by name, city, or specialization"
               className="rounded-xl border-primary/20 bg-white pl-10"
             />
           </div>
         </div>
 
-        {isLoading ? <p className="text-center text-sm text-muted-foreground">Loading lawyers...</p> : null}
-        {error ? (
+        {isLoading && <p className="text-center text-sm text-muted-foreground">Loading lawyers...</p>}
+        {error && (
           <p className="text-center text-sm text-destructive">
             Could not load lawyers. Please verify Supabase configuration.
           </p>
-        ) : null}
+        )}
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filteredLawyers.map((lawyer) => (
-            <LawyerCard key={lawyer.id} lawyer={lawyer} onRequestHelp={openRequest} />
+            <LawyerCard
+              key={lawyer.id}
+              lawyer={lawyer}
+              onRequestHelp={openRequest}
+              onMessage={openChat}
+            />
           ))}
         </div>
 
-        {!isLoading && !filteredLawyers.length ? (
+        {!isLoading && !filteredLawyers.length && (
           <p className="py-10 text-center text-sm text-muted-foreground">No approved lawyers found.</p>
-        ) : null}
+        )}
       </div>
 
       <RequestHelpDialog
@@ -83,6 +107,22 @@ export default function Lawyers() {
           if (!open) setSelectedLawyer(null);
         }}
       />
+
+      {chatLawyer && user && (
+        <ChatWindow
+          open={chatOpen}
+          onOpenChange={(open) => {
+            setChatOpen(open);
+            if (!open) setChatLawyer(null);
+          }}
+          lawyerId={chatLawyer.id}
+          lawyerName={chatLawyer.full_name}
+          clientId={user.id}
+          clientName={user.name || user.email}
+          currentUserId={user.id}
+          currentUserName={user.name || user.email}
+        />
+      )}
     </div>
   );
 }

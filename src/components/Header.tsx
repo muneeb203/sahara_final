@@ -74,7 +74,7 @@ export const Header = () => {
                     {user.name}
                   </span>
                 )}
-                <Button variant="outline" size="sm" onClick={logout}>
+                <Button variant="outline" size="sm" onClick={() => logout()}>
                   {t('Logout', 'لاگ آؤٹ')}
                 </Button>
               </div>

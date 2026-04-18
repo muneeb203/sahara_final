@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
+import { GoogleLogin, type CredentialResponse } from '@react-oauth/google';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,70 +8,125 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useAuth } from '@/contexts/AuthContext';
 import { Shield } from 'lucide-react';
 import { toast } from 'sonner';
+import { supabase } from '@/lib/supabase';
 
 export default function Login() {
   const { t } = useLanguage();
-  const { login } = useAuth();
   const navigate = useNavigate();
-  const [phoneNumber, setPhoneNumber] = useState('');
+
+  // Email / Password state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailMode, setEmailMode] = useState<'signin' | 'signup'>('signin');
+  const [emailLoading, setEmailLoading] = useState(false);
 
-  const handlePhoneLogin = () => {
-    if (!phoneNumber) {
-      toast.error(t('Please enter phone number', 'براہ کرم فون نمبر درج کریں'));
-      return;
-    }
-    login();
-    toast.success(t('Login successful!', 'لاگ ان کامیاب!'));
-    navigate('/');
-  };
+  // Phone OTP state
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [phoneLoading, setPhoneLoading] = useState(false);
 
-  const handleEmailLogin = () => {
+  const redirectAfterLogin = () => navigate('/');
+
+  // ── Email / Password ──────────────────────────────────────────────────────
+  const handleEmailSubmit = async () => {
     if (!email || !password) {
       toast.error(t('Please fill all fields', 'براہ کرم تمام فیلڈز بھریں'));
       return;
     }
-    login();
-    toast.success(t('Login successful!', 'لاگ ان کامیاب!'));
-    navigate('/');
+
+    setEmailLoading(true);
+
+    if (emailMode === 'signin') {
+      const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success(t('Login successful!', 'لاگ ان کامیاب!'));
+        redirectAfterLogin();
+      }
+    } else {
+      const { error } = await supabase.auth.signUp({ email: email.trim(), password });
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success(
+          t(
+            'Account created! Check your email to confirm.',
+            'اکاؤنٹ بن گیا! تصدیق کے لیے اپنی ای میل چیک کریں۔'
+          )
+        );
+      }
+    }
+
+    setEmailLoading(false);
   };
 
-  const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
-    try {
-      // Decode JWT token to get user info
-      const token = credentialResponse.credential;
-      if (token) {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(
-          atob(base64)
-            .split('')
-            .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-            .join('')
-        );
-        const userData = JSON.parse(jsonPayload);
-        
-        login({
-          email: userData.email,
-          name: userData.name,
-          picture: userData.picture,
-        });
-        
-        toast.success(t('Login successful!', 'لاگ ان کامیاب!'));
-        navigate('/');
-      }
-    } catch (error) {
-      console.error('Google login error:', error);
-      toast.error(t('Login failed. Please try again.', 'لاگ ان ناکام۔ براہ کرم دوبارہ کوشش کریں۔'));
+  // ── Google OAuth ──────────────────────────────────────────────────────────
+  const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+    const token = credentialResponse.credential;
+    if (!token) {
+      toast.error(t('Google login failed', 'گوگل لاگ ان ناکام'));
+      return;
+    }
+
+    const { error } = await supabase.auth.signInWithIdToken({
+      provider: 'google',
+      token,
+    });
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success(t('Login successful!', 'لاگ ان کامیاب!'));
+      redirectAfterLogin();
     }
   };
 
   const handleGoogleError = () => {
     toast.error(t('Google login failed', 'گوگل لاگ ان ناکام'));
+  };
+
+  // ── Phone OTP ─────────────────────────────────────────────────────────────
+  const handleSendOtp = async () => {
+    if (!phone) {
+      toast.error(t('Please enter phone number', 'براہ کرم فون نمبر درج کریں'));
+      return;
+    }
+
+    setPhoneLoading(true);
+    const { error } = await supabase.auth.signInWithOtp({ phone: phone.trim() });
+    if (error) {
+      toast.error(error.message);
+    } else {
+      setOtpSent(true);
+      toast.success(t('OTP sent to your number', 'آپ کے نمبر پر OTP بھیج دیا گیا'));
+    }
+    setPhoneLoading(false);
+  };
+
+  const handleVerifyOtp = async () => {
+    if (!otp) {
+      toast.error(t('Please enter OTP', 'براہ کرم OTP درج کریں'));
+      return;
+    }
+
+    setPhoneLoading(true);
+    const { error } = await supabase.auth.verifyOtp({
+      phone: phone.trim(),
+      token: otp.trim(),
+      type: 'sms',
+    });
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success(t('Login successful!', 'لاگ ان کامیاب!'));
+      redirectAfterLogin();
+    }
+    setPhoneLoading(false);
   };
 
   return (
@@ -93,10 +148,7 @@ export default function Login() {
           <CardHeader>
             <CardTitle>{t('Login / Sign Up', 'لاگ ان / سائن اپ')}</CardTitle>
             <CardDescription>
-              {t(
-                'Choose your preferred login method',
-                'اپنا پسندیدہ لاگ ان طریقہ منتخب کریں'
-              )}
+              {t('Choose your preferred login method', 'اپنا پسندیدہ لاگ ان طریقہ منتخب کریں')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -113,7 +165,7 @@ export default function Login() {
                   width="100%"
                 />
               </div>
-              
+
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <Separator className="w-full" />
@@ -126,43 +178,23 @@ export default function Login() {
               </div>
             </div>
 
-            <Tabs defaultValue="phone" className="w-full">
+            <Tabs defaultValue="email" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="phone">{t('Phone', 'فون')}</TabsTrigger>
                 <TabsTrigger value="email">{t('Email', 'ای میل')}</TabsTrigger>
+                <TabsTrigger value="phone">{t('Phone', 'فون')}</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="phone" className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="phone">{t('Phone Number', 'فون نمبر')}</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+92-XXX-XXXXXXX"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
-                <Button onClick={handlePhoneLogin} className="w-full">
-                  {t('Send OTP', 'OTP بھیجیں')}
-                </Button>
-                <p className="text-xs text-center text-muted-foreground">
-                  {t(
-                    'You will receive an OTP code to verify your number',
-                    'آپ کو اپنے نمبر کی تصدیق کے لیے ایک OTP کوڈ ملے گا'
-                  )}
-                </p>
-              </TabsContent>
-
+              {/* ── Email Tab ── */}
               <TabsContent value="email" className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">{t('Email', 'ای میل')}</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder={t('your@email.com', 'your@email.com')}
+                    placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="email"
                   />
                 </div>
                 <div className="space-y-2">
@@ -173,11 +205,101 @@ export default function Login() {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    autoComplete={emailMode === 'signin' ? 'current-password' : 'new-password'}
+                    onKeyDown={(e) => e.key === 'Enter' && handleEmailSubmit()}
                   />
                 </div>
-                <Button onClick={handleEmailLogin} className="w-full">
-                  {t('Login', 'لاگ ان')}
+
+                <Button onClick={handleEmailSubmit} className="w-full" disabled={emailLoading}>
+                  {emailLoading
+                    ? t('Please wait...', 'براہ کرم انتظار کریں...')
+                    : emailMode === 'signin'
+                    ? t('Login', 'لاگ ان')
+                    : t('Create Account', 'اکاؤنٹ بنائیں')}
                 </Button>
+
+                <p className="text-center text-sm text-muted-foreground">
+                  {emailMode === 'signin' ? (
+                    <>
+                      {t("Don't have an account?", 'اکاؤنٹ نہیں ہے؟')}{' '}
+                      <button
+                        type="button"
+                        className="text-primary underline-offset-2 hover:underline"
+                        onClick={() => setEmailMode('signup')}
+                      >
+                        {t('Sign Up', 'سائن اپ')}
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {t('Already have an account?', 'پہلے سے اکاؤنٹ ہے؟')}{' '}
+                      <button
+                        type="button"
+                        className="text-primary underline-offset-2 hover:underline"
+                        onClick={() => setEmailMode('signin')}
+                      >
+                        {t('Login', 'لاگ ان')}
+                      </button>
+                    </>
+                  )}
+                </p>
+              </TabsContent>
+
+              {/* ── Phone Tab ── */}
+              <TabsContent value="phone" className="space-y-4">
+                {!otpSent ? (
+                  <>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">{t('Phone Number', 'فون نمبر')}</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="+92XXXXXXXXXX"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        {t('Use international format e.g. +92XXXXXXXXXX', 'بین الاقوامی فارمیٹ استعمال کریں')}
+                      </p>
+                    </div>
+                    <Button onClick={handleSendOtp} className="w-full" disabled={phoneLoading}>
+                      {phoneLoading
+                        ? t('Sending...', 'بھیجا جا رہا ہے...')
+                        : t('Send OTP', 'OTP بھیجیں')}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm text-muted-foreground">
+                      {t('Enter the 6-digit code sent to', 'یہ کوڈ بھیجا گیا')} <strong>{phone}</strong>
+                    </p>
+                    <div className="space-y-2">
+                      <Label htmlFor="otp">{t('OTP Code', 'OTP کوڈ')}</Label>
+                      <Input
+                        id="otp"
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={6}
+                        placeholder="123456"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleVerifyOtp()}
+                      />
+                    </div>
+                    <Button onClick={handleVerifyOtp} className="w-full" disabled={phoneLoading}>
+                      {phoneLoading
+                        ? t('Verifying...', 'تصدیق ہو رہی ہے...')
+                        : t('Verify & Login', 'تصدیق کریں اور لاگ ان کریں')}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="w-full text-sm"
+                      onClick={() => { setOtpSent(false); setOtp(''); }}
+                    >
+                      {t('Change number', 'نمبر تبدیل کریں')}
+                    </Button>
+                  </>
+                )}
               </TabsContent>
             </Tabs>
           </CardContent>

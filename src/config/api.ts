@@ -1,7 +1,7 @@
 // API Configuration
 export const API_CONFIG = {
   // Backend base URL
-  NGROK_BASE_URL: 'https://b885-119-154-57-138.ngrok-free.app',
+  NGROK_BASE_URL: 'https://1a9d-119-154-36-119.ngrok-free.app',
   
   // API endpoints
   ENDPOINTS: {

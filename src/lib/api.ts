@@ -66,6 +66,7 @@ export async function checkBackendHealth(): Promise<HealthStatus> {
       method: 'GET',
       headers: {
         Accept: 'application/json',
+        'ngrok-skip-browser-warning': 'true',
       },
       signal: controller.signal,
     });
@@ -111,6 +112,7 @@ export async function sendChat(
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        'ngrok-skip-browser-warning': 'true',
       },
       body: JSON.stringify({
         message: trimmed,

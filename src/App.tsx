@@ -25,39 +25,46 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
-const App = () => (
-  <GoogleOAuthProvider clientId={googleClientId}>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <LanguageProvider>
-          <AuthProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Layout>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/laws" element={<Laws />} />
-                  <Route path="/laws/:id" element={<LawDetail />} />
-                  <Route path="/chat" element={<Chat />} />
-                  <Route path="/lawyers" element={<Lawyers />} />
-                  <Route path="/lawyers/:id" element={<LawyerDetail />} />
-                  <Route path="/lawyer-portal" element={<LawyerPortal />} />
-                  <Route path="/admin" element={<AdminPanel />} />
-                  <Route path="/uploads" element={<Uploads />} />
-                  <Route path="/emergency-contacts" element={<EmergencyContacts />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Layout>
-            </BrowserRouter>
-          </AuthProvider>
-        </LanguageProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </GoogleOAuthProvider>
+const AppContent = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/laws" element={<Laws />} />
+                <Route path="/laws/:id" element={<LawDetail />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/lawyers" element={<Lawyers />} />
+                <Route path="/lawyers/:id" element={<LawyerDetail />} />
+                <Route path="/lawyer-portal" element={<LawyerPortal />} />
+                <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/uploads" element={<Uploads />} />
+                <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </AuthProvider>
+      </LanguageProvider>
+    </TooltipProvider>
+  </QueryClientProvider>
 );
+
+const App = () =>
+  googleClientId ? (
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <AppContent />
+    </GoogleOAuthProvider>
+  ) : (
+    <AppContent />
+  );
 
 export default App;

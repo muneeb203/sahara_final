@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Send, Mic, Upload, Trash2, Download, Bot, User, AlertCircle } from 'lucide-react';
+import { Send, Mic, Upload, Trash2, Download, Bot, User, AlertCircle, LogIn } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAuth } from '@/contexts/AuthContext';
 import { sendChatMessage, checkApiHealth, type ChatMessage as ApiChatMessage } from '@/lib/api';
 import '@/lib/debug'; // Import debug utilities
 
@@ -17,6 +19,7 @@ type Message = {
 
 export default function Chat() {
   const { t } = useLanguage();
+  const { isLoggedIn } = useAuth();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -270,33 +273,49 @@ export default function Chat() {
 
           {/* Input */}
           <CardContent className="border-t pt-4 pb-4 flex-shrink-0 bg-background/95 backdrop-blur-sm">
-            <div className="flex gap-2">
-              <Button variant="outline" size="icon" onClick={handleVoiceInput}>
-                <Mic className="h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="icon" onClick={handleFileUpload}>
-                <Upload className="h-5 w-5" />
-              </Button>
-              <Input
-                placeholder={t('Type your question...', 'اپنا سوال ٹائپ کریں...')}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                className="flex-1"
-              />
-              <Button 
-                onClick={handleSend} 
-                disabled={!input.trim() || isTyping}
-              >
-                <Send className="h-5 w-5" />
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
-              {t(
-                'This AI assistant provides general legal information. For specific legal advice, please consult a qualified lawyer.',
-                'یہ AI معاون عام قانونی معلومات فراہم کرتی ہے۔ مخصوص قانونی مشورے کے لیے، براہ کرم ایک قابل وکیل سے مشورہ کریں۔'
-              )}
-            </p>
+            {isLoggedIn ? (
+              <>
+                <div className="flex gap-2">
+                  <Button variant="outline" size="icon" onClick={handleVoiceInput}>
+                    <Mic className="h-5 w-5" />
+                  </Button>
+                  <Button variant="outline" size="icon" onClick={handleFileUpload}>
+                    <Upload className="h-5 w-5" />
+                  </Button>
+                  <Input
+                    placeholder={t('Type your question...', 'اپنا سوال ٹائپ کریں...')}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                    className="flex-1"
+                  />
+                  <Button onClick={handleSend} disabled={!input.trim() || isTyping}>
+                    <Send className="h-5 w-5" />
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2 text-center">
+                  {t(
+                    'This AI assistant provides general legal information. For specific legal advice, please consult a qualified lawyer.',
+                    'یہ AI معاون عام قانونی معلومات فراہم کرتی ہے۔ مخصوص قانونی مشورے کے لیے، براہ کرم ایک قابل وکیل سے مشورہ کریں۔'
+                  )}
+                </p>
+              </>
+            ) : (
+              <div className="flex flex-col items-center gap-3 py-2">
+                <p className="text-sm text-muted-foreground text-center">
+                  {t(
+                    'Please log in to chat with the AI assistant.',
+                    'AI معاون سے بات کرنے کے لیے براہ کرم لاگ ان کریں۔'
+                  )}
+                </p>
+                <Button asChild>
+                  <Link to="/login">
+                    <LogIn className="h-4 w-4 mr-2" />
+                    {t('Login to Chat', 'چیٹ کے لیے لاگ ان کریں')}
+                  </Link>
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
